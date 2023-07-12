@@ -3,9 +3,54 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{B3D8F2B8-4E3F-4C69-A9C0-BCCE791BFB99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{A2A7E43C-A352-4B98-B2B5-0957604C5C8C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{5D15BCD4-9428-4118-8FA8-AE2E8FCA4BD6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "School", "School", "{77161610-803E-409E-9A27-8058C3979E83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{A2B4FCC8-3425-404D-AA4A-4E16FCE4B01A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{AC07766E-3399-4E75-B782-BA86D283D014}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotoGomezTelesforo.Alumno.Service", "backend\Domain\School\SotoGomezTelesforo.Alumno.Service\SotoGomezTelesforo.Alumno.Service.csproj", "{A1F774A6-C212-4C08-8A37-7CA696F11F82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SotoGomezTelesforo.Security.Service", "backend\Infrastructure\Security\SotoGomezTelesforo.Security.Service\SotoGomezTelesforo.Security.Service.csproj", "{BEE76D56-90A0-4D6F-838E-011DEE868985}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1E17C7CA-C866-4A41-AE5C-4C95CD86AEF0}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1F774A6-C212-4C08-8A37-7CA696F11F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1F774A6-C212-4C08-8A37-7CA696F11F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1F774A6-C212-4C08-8A37-7CA696F11F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1F774A6-C212-4C08-8A37-7CA696F11F82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEE76D56-90A0-4D6F-838E-011DEE868985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEE76D56-90A0-4D6F-838E-011DEE868985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEE76D56-90A0-4D6F-838E-011DEE868985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEE76D56-90A0-4D6F-838E-011DEE868985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E17C7CA-C866-4A41-AE5C-4C95CD86AEF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E17C7CA-C866-4A41-AE5C-4C95CD86AEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E17C7CA-C866-4A41-AE5C-4C95CD86AEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E17C7CA-C866-4A41-AE5C-4C95CD86AEF0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A2A7E43C-A352-4B98-B2B5-0957604C5C8C} = {B3D8F2B8-4E3F-4C69-A9C0-BCCE791BFB99}
+		{5D15BCD4-9428-4118-8FA8-AE2E8FCA4BD6} = {B3D8F2B8-4E3F-4C69-A9C0-BCCE791BFB99}
+		{77161610-803E-409E-9A27-8058C3979E83} = {A2A7E43C-A352-4B98-B2B5-0957604C5C8C}
+		{A2B4FCC8-3425-404D-AA4A-4E16FCE4B01A} = {5D15BCD4-9428-4118-8FA8-AE2E8FCA4BD6}
+		{AC07766E-3399-4E75-B782-BA86D283D014} = {5D15BCD4-9428-4118-8FA8-AE2E8FCA4BD6}
+		{A1F774A6-C212-4C08-8A37-7CA696F11F82} = {77161610-803E-409E-9A27-8058C3979E83}
+		{BEE76D56-90A0-4D6F-838E-011DEE868985} = {A2B4FCC8-3425-404D-AA4A-4E16FCE4B01A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1E1A8A8E-8CCF-4C4C-8BE6-BA92258919AF}

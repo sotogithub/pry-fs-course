@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  sotogomeztelesforo.alumno.service:
+    image: ${DOCKER_REGISTRY-}sotogomeztelesforoalumnoservice
+    container_name: sgt.school.service
+    build:
+      context: .
+      dockerfile: backend/Domain/School/SotoGomezTelesforo.Alumno.Service/Dockerfile
+    ports:
+      - 9091:80
+      - 9092:443
+    networks:
+      - backend
+
+  sotogomeztelesforo.security.service:
+    image: ${DOCKER_REGISTRY-}sotogomeztelesforosecurityservice
+    container_name: sgt.security.service
+    build:
+      context: .
+      dockerfile: backend/Infrastructure/Security/SotoGomezTelesforo.Security.Service/Dockerfile
+    ports:
+      - 9093:80
+      - 9094:443
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend
+    driver: bridge
+
