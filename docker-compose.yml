@@ -25,6 +25,16 @@ services:
     networks:
       - backend
 
+  sqlserver:
+    image: "mcr.microsoft.com/mssql/server:latest"
+    container_name: sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password1234
+    ports:
+      - 1434:1433
+    networks:
+      - backend
 networks:
   backend:
     name: backend
