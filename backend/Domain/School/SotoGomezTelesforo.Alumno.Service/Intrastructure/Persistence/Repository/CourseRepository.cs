@@ -23,9 +23,9 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Repositor
             throw new NotImplementedException();
         }
 
-        public Task<Course> GetCourseAsync(Guid courseId)
+        public async Task<Course> GetCourseAsync(Guid courseId)
         {
-            throw new NotImplementedException();
+            return await _schoolDbContext.Courses.FirstOrDefaultAsync(c => c.Id.Equals(courseId));
         }
 
         public async Task<List<Course>> GetCoursesAsync()

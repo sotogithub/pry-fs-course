@@ -6,5 +6,6 @@ namespace SotoGomezTelesforo.Alumno.Service.Application.Interfaces
     public interface ISchoolApplicationService
     {
         Task<List<CourseDto>> GetCourseAsync();
+        Task<CourseDto> GetCourseByIdAsync(Guid Id);
     }
 }

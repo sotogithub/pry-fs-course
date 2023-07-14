@@ -12,5 +12,14 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Http.EndpointHandlers
             var courses = await schoolApplicationService.GetCourseAsync();
             return TypedResults.Ok( courses );
         }
+
+        public static async Task<IResult> GeCourseByIdAsync(
+            [FromServices] ISchoolApplicationService schoolApplicationService,
+            Guid Id
+            )
+        {
+            var courses = await schoolApplicationService.GetCourseByIdAsync(Id);
+            return TypedResults.Ok(courses);
+        }
     }
 }
