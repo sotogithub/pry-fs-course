@@ -1,4 +1,5 @@
-﻿using SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Extensions;
+﻿using SotoGomezTelesforo.Alumno.Service.Intrastructure.Http.Extensions;
+using SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Extensions;
 
 namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Extensions
 {
@@ -13,7 +14,7 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Extensions
             var options = new InfrastructureOptions();
             configure(options);
 
-            //services.AddHttp();
+            services.AddHttp();
             services.AddPersistence(opt => opt.ConnectionString = options.ConnectionString);
             //services.AddSecurity();
         }

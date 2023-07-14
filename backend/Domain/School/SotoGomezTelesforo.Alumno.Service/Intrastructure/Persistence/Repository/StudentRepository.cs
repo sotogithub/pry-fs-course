@@ -13,39 +13,18 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Repositor
         {
             _schoolDbContext = schoolDbContext;
         }
-
-        public async Task AddStudentAsync(Student student)
-        {
-            await _schoolDbContext.Students.AddAsync(student);
-        }
-
-        public async Task DeleteStudentAsync(Student student)
-        {
-            await Task.FromResult(_schoolDbContext.Students.Remove(student));
-        }
-
-        public async Task<Student> GetStudentAsync(Guid studentId)
-        {
-            return await _schoolDbContext.Students.FirstOrDefaultAsync(c => c.Id.Equals(studentId));
-        }
-
         public async Task<List<Student>> GetStudentsAsync()
         {
             var students = await _schoolDbContext.Students.ToListAsync();
             return students;
         }
-
-        public async Task<IEnumerable<Student>> GetStudentsAsync(List<Guid> studentIds)
+        public async Task<Student> GetStudentAsync(Guid studentId)
         {
-            return await _schoolDbContext.Students.Where(c => studentIds.Contains(c.Id))
-                .OrderBy(c => c.FirstName)
-                .OrderBy(c => c.LastName)
-                .ToListAsync();
+            return await _schoolDbContext.Students.FirstOrDefaultAsync(c => c.Id.Equals(studentId));
         }
-
-        public async Task<bool> StudentExists(Guid studentId)
+        public async Task AddStudentAsync(Student student)
         {
-            return await _schoolDbContext.Students.AnyAsync(c => c.Id == studentId);
+            await _schoolDbContext.Students.AddAsync(student);
         }
 
         public async Task UpdateStudentAsync(Student Student)
@@ -62,5 +41,10 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Repositor
                 studentUpdate.Phone = Student.Phone;
             }
         }
+        public async Task DeleteStudentAsync(Student student)
+        {
+            await Task.FromResult(_schoolDbContext.Students.Remove(student));
+        }
+
     }
 }

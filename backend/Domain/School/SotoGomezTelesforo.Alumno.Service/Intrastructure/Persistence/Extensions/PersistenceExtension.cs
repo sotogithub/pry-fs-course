@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SotoGomezTelesforo.Alumno.Service.Domain.School.Interfaces;
 using SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Contexts;
+using SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Repository;
 
 namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Extensions
 {
@@ -25,8 +27,10 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Extension
             configure(options);
 
             services.AddDbContext<SchoolDbContext>(o => o.UseSqlServer(options.ConnectionString));
-            //services.AddScoped<IAuthorRepository, AuthorRepository>();
-            //services.AddScoped<IBookRepository, BookRepository>();
+            //services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            //services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
+
             //services.AddScoped<LibraryUnitOfWork>();
             //services.AddTransient<IAuthorPropertyMappingService, AuthorPropertyMappingService>();
             //services.AddScoped<ITypeHelperService, TypeHelperService>();

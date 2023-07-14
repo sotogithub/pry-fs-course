@@ -5,12 +5,11 @@ namespace SotoGomezTelesforo.Alumno.Service.Domain.School.Interfaces
 {
     public interface ICourseRepository
     {
-        Task AddCourseAsync(Course course);
-        Task<bool> CourseExists(Guid courseId);
-        Task DeleteCourseAsync(Course course);
-        Task<Course> GetCourseAsync(Guid courseId);
         Task<List<Course>> GetCoursesAsync();
-        Task<IEnumerable<Course>> GetCoursesAsync(List<Guid> courseIds);
+        Task<Course> GetCourseAsync(Guid courseId);
+        Task AddCourseAsync(Course course);
         Task UpdateCourseAsync(Course course);
+        Task DeleteCourseAsync(Course course);
+
     }
 }
