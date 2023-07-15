@@ -1,10 +1,26 @@
 ﻿using SotoGomezTelesforo.Alumno.Service.Application.Dtos;
 using SotoGomezTelesforo.Alumno.Service.Application.Interfaces;
+using SotoGomezTelesforo.Alumno.Service.Domain.School.Entities;
 
 namespace SotoGomezTelesforo.Alumno.Service.Application.Services
 {
     public partial class SchoolApplicationService : ISchoolApplicationService
     {
+        public async Task<CourseDto> CreateCourseAsync(CourseForCreationDto course)
+        {
+            var courseEntity = _mapper.Map<Course>(course);
+
+            await _unitOfWork._courseRepository.AddCourseAsync(courseEntity);
+
+            if (!await _unitOfWork.SaveAsync())
+            {
+                throw new Exception("Creating an author failed on save.");
+            }
+
+            var authorToReturn = _mapper.Map<CourseDto>(courseEntity);
+            return authorToReturn;
+        }
+
         public async Task<List<CourseDto>> GetCourseAsync()
         {
             var coursesFromRepo = await _unitOfWork._courseRepository.GetCoursesAsync();

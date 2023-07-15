@@ -9,6 +9,7 @@ namespace SotoGomezTelesforo.Alumno.Service.Application.Mappers
         public CourseMapper()
         {
             CreateMap<Course, CourseDto>();
+            CreateMap<CourseForCreationDto, Course>();
         }
     }
 }

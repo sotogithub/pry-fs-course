@@ -17,6 +17,10 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Http.Extensions
             coursesEndpoints.MapGet("/{Id}", CourseHandlers.GeCourseByIdAsync)
                 .WithName("GetCourse")
                 .WithOpenApi();
+
+            coursesEndpoints.MapPost("", CourseHandlers.CreateAuthorAsync)
+                .WithName("CreateCourse")
+                .WithOpenApi();
         }
 
         public static void RegisterEndpoints(this IEndpointRouteBuilder app)

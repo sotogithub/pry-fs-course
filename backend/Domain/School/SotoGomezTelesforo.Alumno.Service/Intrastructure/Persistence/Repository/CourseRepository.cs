@@ -13,9 +13,9 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Repositor
         {
             _schoolDbContext = schoolDbContext;
         }
-        public Task AddCourseAsync(Course course)
+        public async Task AddCourseAsync(Course course)
         {
-            throw new NotImplementedException();
+            await _schoolDbContext.Courses.AddAsync(course);
         }
 
         public Task DeleteCourseAsync(Course course)
