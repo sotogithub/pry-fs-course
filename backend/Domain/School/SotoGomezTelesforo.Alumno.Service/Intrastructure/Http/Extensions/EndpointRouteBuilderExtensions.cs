@@ -19,6 +19,7 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Http.Extensions
                 .WithOpenApi();
 
             coursesEndpoints.MapPost("", CourseHandlers.CreateAuthorAsync)
+                .ProducesValidationProblem(422)
                 .WithName("CreateCourse")
                 .WithOpenApi();
 

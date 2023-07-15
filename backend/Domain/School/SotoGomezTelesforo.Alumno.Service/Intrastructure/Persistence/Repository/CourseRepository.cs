@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SotoGomezTelesforo.Alumno.Service.Application.Dtos.Course;
 using SotoGomezTelesforo.Alumno.Service.Domain.School.Entities;
 using SotoGomezTelesforo.Alumno.Service.Domain.School.Interfaces;
 using SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Contexts;
@@ -28,10 +29,24 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Repositor
             return await _context.Courses.FirstOrDefaultAsync(c => c.Id.Equals(courseId));
         }
 
-        public async Task<List<Course>> GetCoursesAsync()
+        public async Task<List<Course>> GetCoursesAsync(CourseResourceParameters courseResourceParameters)
         {
-            var courses = await _context.Courses.ToListAsync();
-            return courses;
+            //var courses = await _context.Courses.ToListAsync();
+            //return courses;
+            var queryAuthors = _context.Courses.AsQueryable();
+
+            
+
+            if (!string.IsNullOrEmpty(courseResourceParameters.SearchQuery))
+            {
+                var searchQueryForWhereClause = courseResourceParameters.SearchQuery.Trim().ToLower();
+
+                queryAuthors = queryAuthors
+                    .Where(a => a.CourseName.ToLower().Contains(searchQueryForWhereClause)
+                    || a.CourseDescription.ToLower().Contains(searchQueryForWhereClause));
+            }
+
+            return queryAuthors.ToList();
         }
 
         public async Task UpdateCourseAsync(Course course)

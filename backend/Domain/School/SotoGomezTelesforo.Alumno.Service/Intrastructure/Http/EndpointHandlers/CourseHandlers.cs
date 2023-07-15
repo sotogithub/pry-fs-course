@@ -1,17 +1,20 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using SotoGomezTelesforo.Alumno.Service.Application.Dtos;
+using SotoGomezTelesforo.Alumno.Service.Application.Dtos.Course;
 using SotoGomezTelesforo.Alumno.Service.Application.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Http.EndpointHandlers
 {
     public class CourseHandlers
     {
         public static async Task<IResult> GetResultAsync(
-            [FromServices] ISchoolApplicationService schoolApplicationService
+            [FromServices] ISchoolApplicationService schoolApplicationService,
+            [AsParameters] CourseResourceParameters courseResourceParameters
             )
         {
-            var courses = await schoolApplicationService.GetCourseAsync();
+            var courses = await schoolApplicationService.GetCourseAsync(courseResourceParameters);
             return TypedResults.Ok( courses );
         }
 
@@ -24,7 +27,7 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Http.EndpointHandlers
             return TypedResults.Ok(courses);
         }
 
-        public static async Task<Results<BadRequest, Ok<CourseDto>>> CreateAuthorAsync(
+        public static async Task<Results<BadRequest, UnprocessableEntity<List<ValidationResult>>, CreatedAtRoute<CourseDto>, Ok<CourseDto>>> CreateAuthorAsync(
             [FromServices] ISchoolApplicationService _schoolApplicationService,
             [FromBody] CourseForCreationDto course
         )
@@ -35,7 +38,12 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Http.EndpointHandlers
             }
 
             var result = await _schoolApplicationService.CreateCourseAsync(course);
-            return TypedResults.Ok(result);
+            if (!result.Success)
+            {
+                return TypedResults.UnprocessableEntity(result.ValidationErrors);
+            }
+
+            return TypedResults.CreatedAtRoute(result.Course, $"GetCourse", new { result.Course.Id });
         }
 
         public static async Task<Results<BadRequest, NotFound, NoContent, Ok<CourseDto>>> UpdateCourseAsync(
