@@ -37,5 +37,26 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Http.EndpointHandlers
             var result = await _schoolApplicationService.CreateCourseAsync(course);
             return TypedResults.Ok(result);
         }
+
+        public static async Task<Results<BadRequest, NotFound, NoContent, Ok<CourseDto>>> UpdateCourseAsync(
+           [FromServices] ISchoolApplicationService _schoolApplicationService,
+           [FromBody] CourseForUpdateDto course,
+           Guid Id
+        )
+        {
+            if (course == null)
+            {
+                return TypedResults.BadRequest();
+            }
+
+            var result = await _schoolApplicationService.UpdateCourseAsync(Id, course);
+
+            if (result.Success && result.CourseUpserted != null)
+            {
+                return TypedResults.Ok(result.CourseUpserted);
+            }
+
+            return TypedResults.NoContent();
+        }
     }
 }

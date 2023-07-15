@@ -34,9 +34,15 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Repositor
             return courses;
         }
 
-        public Task UpdateCourseAsync(Course course)
+        public async Task UpdateCourseAsync(Course course)
         {
-            throw new NotImplementedException();
+            var courseUpdate = await GetCourseAsync(course.Id);
+            if (courseUpdate != null)
+            {
+                courseUpdate.CourseName = course.CourseName;
+                courseUpdate.CourseDescription = course.CourseDescription;
+                
+            }
         }
     }
 }
