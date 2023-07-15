@@ -58,5 +58,19 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Http.EndpointHandlers
 
             return TypedResults.NoContent();
         }
+        public static async Task<Results<NotFound, NoContent>> DeleteCourseAsync(
+          [FromServices] ISchoolApplicationService _schoolApplicationService,
+          Guid Id
+       )
+        {
+            var result = await _schoolApplicationService.DeleteCourseAsync(Id);
+
+            if (result == null)
+            {
+                return TypedResults.NotFound();
+            }
+
+            return TypedResults.NoContent();
+        }
     }
 }

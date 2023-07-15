@@ -7,30 +7,30 @@ namespace SotoGomezTelesforo.Alumno.Service.Intrastructure.Persistence.Repositor
 {
     public class CourseRepository : ICourseRepository
     {
-        private readonly SchoolDbContext _schoolDbContext;
+        private readonly SchoolDbContext _context;
 
         public CourseRepository(SchoolDbContext schoolDbContext)
         {
-            _schoolDbContext = schoolDbContext;
+            _context = schoolDbContext;
         }
         public async Task AddCourseAsync(Course course)
         {
-            await _schoolDbContext.Courses.AddAsync(course);
+            await _context.Courses.AddAsync(course);
         }
 
-        public Task DeleteCourseAsync(Course course)
+        public async Task DeleteCourseAsync(Course course)
         {
-            throw new NotImplementedException();
+            await Task.FromResult(_context.Courses.Remove(course));
         }
 
         public async Task<Course> GetCourseAsync(Guid courseId)
         {
-            return await _schoolDbContext.Courses.FirstOrDefaultAsync(c => c.Id.Equals(courseId));
+            return await _context.Courses.FirstOrDefaultAsync(c => c.Id.Equals(courseId));
         }
 
         public async Task<List<Course>> GetCoursesAsync()
         {
-            var courses = await _schoolDbContext.Courses.ToListAsync();
+            var courses = await _context.Courses.ToListAsync();
             return courses;
         }
 

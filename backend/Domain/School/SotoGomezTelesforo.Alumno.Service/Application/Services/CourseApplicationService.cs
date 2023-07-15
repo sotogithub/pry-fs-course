@@ -22,6 +22,24 @@ namespace SotoGomezTelesforo.Alumno.Service.Application.Services
             return authorToReturn;
         }
 
+        public async Task<bool?> DeleteCourseAsync(Guid Id)
+        {
+            var courseFronRepo = await _unitOfWork._courseRepository.GetCourseAsync(Id);
+            if (courseFronRepo == null)
+            {
+                return null;
+            }
+
+            await _unitOfWork._courseRepository.DeleteCourseAsync(courseFronRepo);
+
+            if (!await _unitOfWork.SaveAsync())
+            {
+                throw new Exception($"Deleting course {Id} failed on save.");
+            }
+
+            return true;
+        }
+
         public async Task<List<CourseDto>> GetCourseAsync()
         {
             var coursesFromRepo = await _unitOfWork._courseRepository.GetCoursesAsync();

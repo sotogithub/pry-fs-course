@@ -10,5 +10,7 @@ namespace SotoGomezTelesforo.Alumno.Service.Application.Interfaces
         Task<CourseDto> GetCourseByIdAsync(Guid Id);
         Task<CourseDto> CreateCourseAsync(CourseForCreationDto course);
         Task<UpdateCourseResult> UpdateCourseAsync(Guid Id, CourseForUpdateDto course);
+        Task<bool?> DeleteCourseAsync(Guid Id);
+
     }
 }
